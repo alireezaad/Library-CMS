@@ -1,0 +1,82 @@
+﻿@model IEnumerable<AlirezaAbasi.Models.Members>
+
+@{
+    ViewBag.Title = "All members";
+}
+<br/>
+<h2>Welcome to the list of all members:</h2>
+<br />
+<div class="form-row">
+    <table>
+        <tr>
+            <form method="get" action="/Members/Index">
+
+            <td style="padding-right:940px">
+            </td>
+            <td>
+                <input class="form-control" type="text" placeholder="Search for..." name="SearchString" value="@ViewData["CurrentFilter"]" aria-label="Search" aria-describedby="btnNavbarSearch" />
+            </td>
+            <td>
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </td>
+            </form>
+        </tr>
+    </table>
+</div>
+<br />
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisterCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FullName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ExpireDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Address)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FullName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.RegisterDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ExpireDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.BirthDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Address)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.RegisterCode }, new { @class = "btn btn-warning" }) |
+            @Html.ActionLink("Card", "ShowCard", new { id = item.RegisterCode }, new { @class = "btn btn-primary" }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.RegisterCode }, new { @class = "btn btn-danger" })
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+<p>
+    @Html.ActionLink("Create New", "Create","", new { @class ="btn btn-success"})
+</p>

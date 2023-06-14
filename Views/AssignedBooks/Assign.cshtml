@@ -1,0 +1,52 @@
+﻿@model AlirezaAbasi.Models.AssignedBooks
+
+@{
+    ViewBag.Title = "Assign";
+}
+
+<h2>Assign</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+<div class="form-horizontal">
+    <hr />
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Member's Code:
+        </div>
+        <div class="col-md-10">
+            <input type="text" name="registerCode" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="control-label col-md-2">
+            Book's Code:
+        </div>
+        <div class="col-md-10">
+            <input type="text" name="bookCode" class="form-control" />
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ReturnDate, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.ReturnDate, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ReturnDate, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <br />
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" value="Assign" class="btn btn-success" /> |
+            @Html.ActionLink("Back to list", "Index", "", new { @class = "btn btn-primary" })
+        </div>
+    </div>
+</div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

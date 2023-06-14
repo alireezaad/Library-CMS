@@ -1,0 +1,46 @@
+﻿@model IEnumerable<AlirezaAbasi.Models.Books>
+
+@{
+    ViewBag.Title = "Welcome";
+}
+<br />
+<h2>Available Books</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Code)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Writer)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Code)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Writer)
+            </td>
+        </tr>
+    }
+
+</table>
+<br />
+<br />
+<br />
+@Html.ActionLink("Assign a Book", "Assign", "AssignedBooks", "", new { @class = "btn btn-success" }) |
+@Html.ActionLink("Assigned Books", "Index", "AssignedBooks", "", new { @class = "btn btn-primary" }) |
+@Html.ActionLink("Insert new Book", "Create", "Books", "", new { @class = "btn btn-primary" }) |
+@Html.ActionLink("Insert new Member", "Create", "Members", "", new { @class = "btn btn-primary" }) 

@@ -1,0 +1,53 @@
+﻿@model IEnumerable<AlirezaAbasi.Models.AssignedBooks>
+
+@{
+    ViewBag.Title = "Assign Index";
+}
+<br />
+<h2>Assigned Books</h2>
+<br />
+
+<table class="table">
+    <tr>
+        <th>
+             Member
+        </th>
+        <th>
+            Books
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StartDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReturnDate)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @item.members.FullName
+        </td>
+        <td>
+            @foreach (var book in item.books)
+            {
+                <span>
+                    @book.Title,
+                </span>
+            }
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.StartDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReturnDate)
+        </td>
+    </tr>
+}
+
+</table>
+<br />
+<p>
+    @Html.ActionLink("Assign new book", "Assign","", new { @class = "btn btn-success" })
+</p>

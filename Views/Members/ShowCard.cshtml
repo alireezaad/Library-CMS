@@ -1,0 +1,64 @@
+﻿@model AlirezaAbasi.Models.Members
+
+@{
+    ViewBag.Title = "ShowCard";
+}
+<br />
+<h2>@Model.FullName's Card</h2>
+<br />
+<div>
+    <h4>Members</h4>
+    <hr />
+    <dl class="dl-horizontal jumbotron">
+        <dt>
+            @Html.DisplayNameFor(model => model.FullName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RegisterDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RegisterDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ExpireDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ExpireDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.BirthDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.BirthDate)
+        </dd>
+        <dt>
+            Books
+        </dt>
+        <dd>
+            @foreach (var item in Model.AssignedBooks)
+            {
+                foreach (var item1 in item.books)
+                {
+                    <span>
+                        @item1.Title,
+                    </span>
+                }
+            }
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.RegisterCode },new {@class="btn btn-warning"}) |
+    @Html.ActionLink("Back to List", "Index","", new { @class = "btn btn-primary" })
+</p>
