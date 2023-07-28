@@ -39,11 +39,21 @@ namespace AlirezaAbasi.Controllers
                 var book = db.Books.FirstOrDefault(t => t.Code == bookCode);
                 if (member == null)
                 {
-                    ModelState.AddModelError("RegisterCode", "Please inster a valid member code!");
+                    ModelState.AddModelError(string.Empty, "Please inster a valid member code!");
+                    return View(assignedBooks);
+
                 }
                 if (book == null)
                 {
-                    ModelState.AddModelError("BookCode", "Please inster a valid Book code!");
+                    ModelState.AddModelError(string.Empty, "Please inster a valid Book code!");
+                    return View(assignedBooks);
+
+                }
+                if (book.AssignedBooks != null)
+                {
+                    ModelState.AddModelError(string.Empty, "This book has already asssigned to another member. sorry!");
+                    return View(assignedBooks);
+
                 }
                 assignedBooks.members = member;
                 assignedBooks.StartDate = DateTime.Now;
